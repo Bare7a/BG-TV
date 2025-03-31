@@ -1,0 +1,9 @@
+{
+  "id": "com.github.bg-tv",
+  "version": "1.0.0",
+  "type": "web",
+  "title": "BG-TV App",
+  "main": "index.html",
+  "icon": "logo.png",
+  "largeIcon": "logo.png"
+}

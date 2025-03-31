@@ -3,3 +3,7 @@ node_modules/
 dist/
 
 *storybook.log
+
+lg/*
+!lg/appinfo.json
+!lg/logo.png

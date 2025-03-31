@@ -1,13 +1,14 @@
 {
-  "name": "solid-app",
-  "version": "2.5.0",
-  "description": "",
+  "name": "bg-tv",
+  "version": "1.0.0",
+  "description": "BG-TV: Android, Tizen and WebOS app for watching various Bulgarian TVs and Shows",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "vite --open --host --force",
     "start:prod": "vite --open --host --force --mode production",
     "build": "vite build --sourcemap=true",
+    "build:lg": "vite build --sourcemap=false --base=./ --outDir lg --emptyOutDir false && ares-package lg --outdir lg --no-minify",
     "build:analyze": "vite-bundle-visualizer",
     "preview": "vite preview --open --port 8080",
     "test": "vitest",
@@ -18,7 +19,7 @@
     "lint": "eslint '**/*.{js,ts,jsx,tsx}' --format stylish --ignore-pattern 'dist/*' --ignore-pattern 'node_modules'",
     "lint-fix": "eslint '**/*.{js,ts,jsx,tsx}' --fix  --ignore-pattern 'dist/*' --ignore-pattern 'node_modules'"
   },
-  "author": "",
+  "author": "Bare7a <bare7a@gmail.com> (https://github.com/Bare7a)",
   "license": "ISC",
   "dependencies": {
     "@lightningjs/renderer": "2.13.0",

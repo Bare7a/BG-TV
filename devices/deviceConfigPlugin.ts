@@ -16,7 +16,7 @@ export default (device: string): Plugin => ({
   config: config => {
     config.build = config.build ?? {};
     const path = `${device ?? "common"}`;
-    config.build.outDir = `dist/${path}`;
-    config.base = `/${path}/`;
+    config.build.outDir ??= `dist/${path}`;
+    config.base ??= `/${path}/`;
   },
 });
