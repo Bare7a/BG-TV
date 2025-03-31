@@ -1,0 +1,84 @@
+{
+  "name": "solid-app",
+  "version": "2.5.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "vite --open --host --force",
+    "start:prod": "vite --open --host --force --mode production",
+    "build": "vite build --sourcemap=true",
+    "build:analyze": "vite-bundle-visualizer",
+    "preview": "vite preview --open --port 8080",
+    "test": "vitest",
+    "tsc": "tsc",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "prepare": "husky",
+    "lint": "eslint '**/*.{js,ts,jsx,tsx}' --format stylish --ignore-pattern 'dist/*' --ignore-pattern 'node_modules'",
+    "lint-fix": "eslint '**/*.{js,ts,jsx,tsx}' --fix  --ignore-pattern 'dist/*' --ignore-pattern 'node_modules'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lightningjs/renderer": "2.13.0",
+    "@lightningtv/core": "^2.7.4",
+    "@lightningtv/solid": "^2.7.9",
+    "@lightningtv/vite-hex-transform": "^1.1.0",
+    "@solid-primitives/i18n": "^2.2.0",
+    "@solidjs/router": "^0.15.3",
+    "@storybook/test": "^8.6.3",
+    "@vitejs/plugin-legacy": "^6.0.2",
+    "lodash-es": "^4.17.21",
+    "shaka-player": "^4.13.8",
+    "solid-js": "^1.9.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@lightningtv/core": "$@lightningtv/core",
+      "@lightningtv/solid": "$@lightningtv/solid",
+      "@lightningjs/renderer": "$@lightningjs/renderer",
+      "@storybook/builder-vite": "~8.4.6"
+    }
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.5",
+    "@eslint/js": "^9.21.0",
+    "@storybook/addon-essentials": "^8.6.3",
+    "@storybook/addon-interactions": "^8.6.3",
+    "@storybook/addon-links": "^8.6.3",
+    "@storybook/blocks": "^8.6.3",
+    "@storybook/html": "^8.6.3",
+    "@storybook/html-vite": "^8.6.3",
+    "@storybook/manager-api": "^8.6.3",
+    "@storybook/theming": "^8.6.3",
+    "@vitest/browser": "^3.0.7",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-storybook": "^0.11.4",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "jsdom": "^26.0.0",
+    "lint-staged": "^15.4.3",
+    "playwright": "^1.50.1",
+    "prettier": "^3.5.3",
+    "storybook": "^8.6.3",
+    "storybook-solidjs": "1.0.0-beta.6",
+    "storybook-solidjs-vite": "1.0.0-beta.6",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vite": "^6.2.0",
+    "vite-bundle-visualizer": "^1.2.1",
+    "vite-plugin-cross-origin-isolation": "^0.1.6",
+    "vite-plugin-solid": "^2.11.6",
+    "vitest": "^3.0.7"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}
