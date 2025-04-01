@@ -34,7 +34,7 @@ export abstract class NovaSeries implements AbstractSeries {
       url: `${HOST}/video/${e.slug}/${e.id}`,
       title: e.title,
       imageUrl: e.links.image.href.replace("{width}x{height}", "310x176"),
-      description: e.description ?? e.title,
+      description: `Сезон ${e.season_number} Епизод ${e.episode_number}`,
     }));
 
     return episodes;
@@ -42,9 +42,9 @@ export abstract class NovaSeries implements AbstractSeries {
 
   static async getEpisodeUrl(url: string): Promise<string> {
     const episodeHtml = await fetchHtml(url);
-    const episodesUrl = episodeHtml.split('"links":{"play":{"href":"')[1].split('"')[0];
+    const episodeUrl = episodeHtml.split('"links":{"play":{"href":"')[1].split('"')[0];
 
-    return episodesUrl;
+    return episodeUrl;
   }
 
   static async getToken(): Promise<string> {
