@@ -1,4 +1,4 @@
-import { fetchHtml } from "@/utils/api.utils";
+import { fetchHtml } from "../../utils/api.utils";
 
 const HOST = "https://btvplus.bg";
 const MEDIA_URL = `${HOST}/lbin/v3/btvplus/player_config.php?media_id=2110383625`;
