@@ -3,7 +3,7 @@ export type Series = {
   url: string;
   title: string;
   imageUrl: string;
-  description: string;
+  description?: string;
 };
 
 export type Episode = {
@@ -11,7 +11,7 @@ export type Episode = {
   url: string;
   title: string;
   imageUrl: string;
-  description: string;
+  description?: string;
 };
 
 export abstract class AbstractSeries {

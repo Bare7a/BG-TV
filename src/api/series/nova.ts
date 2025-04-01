@@ -1,3 +1,4 @@
+import { $t } from "../../translate";
 import { fetchHtml, fetchJson } from "../../utils/api.utils";
 import { AbstractSeries, Episode, NovaEpisodesAPI, NovaSeriesAPI, NovaTokenAPI, Series } from "./types";
 
@@ -18,7 +19,7 @@ export abstract class NovaSeries implements AbstractSeries {
         url: `${HOST_API}/tv_shows/${s.id}?offset=0&limit=100`,
         title: s.title,
         imageUrl: s.links.image.href.replace("{width}x{height}", "310x176"),
-        description: s.description ?? s.title,
+        description: s.description,
       })),
     );
 
@@ -34,7 +35,7 @@ export abstract class NovaSeries implements AbstractSeries {
       url: `${HOST}/video/${e.slug}/${e.id}`,
       title: e.title,
       imageUrl: e.links.image.href.replace("{width}x{height}", "310x176"),
-      description: `Сезон ${e.season_number} Епизод ${e.episode_number}`,
+      description: `${$t("season")} ${e.season_number} ${$t("episode")} ${e.episode_number}`,
     }));
 
     return episodes;

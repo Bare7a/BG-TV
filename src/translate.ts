@@ -2,8 +2,8 @@ import * as i18n from "@solid-primitives/i18n";
 import en_dict from "../public/assets/lang/en.json";
 import { createResource, createSignal } from "solid-js";
 
-const [locale, setLocale] = createSignal("en");
-// setLocale("es"); will switch to spanish
+const [locale, setLocale] = createSignal("bg");
+// const [locale, setLocale] = createSignal("en");
 
 async function fetchDictionary(locale) {
   return fetch(`assets/lang/${locale}.json`)
