@@ -14,10 +14,10 @@ export type Episode = {
   description?: string;
 };
 
-export abstract class AbstractSeries {
-  static getAllSeries: () => Promise<Series[]>;
-  static getAllEpisodes: (url: string) => Promise<Episode[]>;
-  static getEpisodeUrl: (url: string) => Promise<string>;
+export interface ISeries {
+  getAllSeries: () => Promise<Series[]>;
+  getAllEpisodes: (url: string) => Promise<Episode[]>;
+  getEpisodeUrl: (url: string) => Promise<string>;
 }
 
 export interface NovaSeriesAPI {

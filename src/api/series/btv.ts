@@ -1,11 +1,11 @@
 import { fetchHtml } from "../../utils/api.utils";
-import { AbstractSeries, Episode, Series } from "./types";
+import { Episode, Series } from "./types";
 
 const HOST = "https://btvplus.bg";
 const CDN_URL = `https://cdn.btv.bg/hls`;
 const ALL_SERIES_URL = `${HOST}/predavaniya/`;
 
-export abstract class BtvSeries implements AbstractSeries {
+export class BtvSeries {
   static async getAllSeries(): Promise<Series[]> {
     const allSeriesHtml = await fetchHtml(ALL_SERIES_URL);
     const pageContent = document.createElement("div");

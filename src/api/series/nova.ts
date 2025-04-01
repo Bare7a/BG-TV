@@ -1,13 +1,13 @@
 import { $t } from "../../translate";
 import { fetchHtml, fetchJson } from "../../utils/api.utils";
-import { AbstractSeries, Episode, NovaEpisodesAPI, NovaSeriesAPI, NovaTokenAPI, Series } from "./types";
+import { Episode, NovaEpisodesAPI, NovaSeriesAPI, NovaTokenAPI, Series } from "./types";
 
 const HOST = "https://play.nova.bg";
 const HOST_API = "https://nbg-api.fite.tv/api/v2";
 const ALL_SERIES_URL = `${HOST}/allshows`;
 const HOST_TOKEN_URL = `${HOST}/api/token`;
 
-export abstract class NovaSeries implements AbstractSeries {
+export class NovaSeries {
   static async getAllSeries(): Promise<Series[]> {
     const allSeriesHtml = await fetchHtml(ALL_SERIES_URL);
     const seriesStr = allSeriesHtml.split('{"props":')[1].split(',"page"')[0];
