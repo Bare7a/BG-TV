@@ -2,7 +2,8 @@ node_modules/
 .DS_Store
 dist/
 
-*storybook.log
+build/*
+!build/.gitkeep 
 
 lg/*
 !lg/appinfo.json

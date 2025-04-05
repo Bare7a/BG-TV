@@ -8,7 +8,7 @@
     "start": "vite --open --host --force",
     "start:prod": "vite --open --host --force --mode production",
     "build": "vite build --sourcemap=true",
-    "build:lg": "vite build --sourcemap=false --base=./ --outDir lg --emptyOutDir false && ares-package lg --outdir lg --no-minify",
+    "build:lg": "vite build --sourcemap=false --base=./ --outDir lg --emptyOutDir false && ares-package lg --outdir build --no-minify",
     "build:analyze": "vite-bundle-visualizer",
     "preview": "vite preview --open --port 8080",
     "tsc": "tsc",
