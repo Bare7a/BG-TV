@@ -16,7 +16,7 @@ export class NovaSeries {
     const series: Series[] = seriesObj.pageProps.programsToDisplay.flatMap(p =>
       p.shows.flatMap(s => ({
         id: s.id,
-        url: `${HOST_API}/tv_shows/${s.id}?offset=0&limit=100`,
+        url: `${HOST_API}/tv_shows/${s.id}/videos?offset=0&limit=100`,
         title: s.title,
         imageUrl: s.links.image.href.replace("{width}x{height}", "310x176"),
         description: s.description,
@@ -30,12 +30,15 @@ export class NovaSeries {
     const token = await this.getToken();
     const episodesObj = await fetchJson<NovaEpisodesAPI>(url, token);
 
-    const episodes: Episode[] = episodesObj.selected_season.episodes.map(e => ({
+    const episodes: Episode[] = episodesObj.map(e => ({
       id: e.id,
       url: `${HOST}/video/${e.slug}/${e.id}`,
       title: e.title,
       imageUrl: e.links.image.href.replace("{width}x{height}", "310x176"),
-      description: `${$t("season")} ${e.season_number} ${$t("episode")} ${e.episode_number}`,
+      description:
+        e.season_name && e.episode_number
+          ? `${$t("season")} ${e.season_number} ${$t("episode")} ${e.episode_number}`
+          : e.description,
     }));
 
     return episodes;

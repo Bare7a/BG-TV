@@ -107,130 +107,35 @@ export interface NovaSeriesAPI {
   };
 }
 
-export interface NovaEpisodesAPI {
-  // pageProps: {
-  //   tvShow: {
-  //     program: {
+export type NovaEpisodesAPI = {
   id: number;
   type: string;
   title: string;
   slug: string;
   description: string;
   published_at: string;
-  brands: {
-    id: number;
-    title: string;
-  }[];
-  genres: {
-    id: number;
-    name: string;
-  }[];
-  // labels: any[];
+  available_from: string;
+  available_to?: string;
+  brands: { id: number; title: string }[];
+  genres: { id: number; name: string }[];
+  labels: { title: string }[];
   tags: string[];
   links: {
     self: { href: string };
     image: { href: string; templated: boolean };
-    videos: { href: string };
-    screen: { href: string };
+    streams: { href: string };
     related_videos: { href: string };
   };
-  seasons: {
-    id: number;
-    title: string;
-    season_number: number;
-    selected: boolean;
-    links: {
-      self: { href: string };
-      image: { href: string; templated: boolean };
-      screen: { href: string };
-      related_videos: { href: string };
-    };
-  }[];
-  selected_season: {
-    id: number;
-    type: string;
-    title: string;
-    slug: string;
-    description: string;
-    published_at: string;
-    brands: {
-      id: number;
-      title: string;
-    }[];
-    genres: {
-      id: number;
-      name: string;
-    }[];
-    // labels: any[];
-    tags: string[];
-    links: {
-      self: { href: string };
-      image: { href: string; templated: boolean };
-      screen: { href: string };
-      related_videos: { href: string };
-    };
-    season_number: number;
-    tv_show_name: string;
-    tv_show_id: number;
-    episodes: {
-      id: number;
-      type: string;
-      title: string;
-      slug: string;
-      description: string;
-      published_at: string;
-      available_from: string;
-      available_to: string;
-      brands: {
-        id: number;
-        title: string;
-      }[];
-      genres: {
-        id: number;
-        name: string;
-      }[];
-      labels: { title: string }[];
-      tags: string[];
-      links: {
-        self: { href: string };
-        image: { href: string; templated: boolean };
-        streams: { href: string };
-        related_videos: { href: string };
-      };
-      duration: string;
-      view_count: number;
-      tv_show_id: number;
-      tv_show_name: string;
-      season_id: number;
-      season_name: string;
-      season_number: number;
-      episode_number: number;
-      billing: {
-        is_chargeable: boolean;
-        is_purchased: boolean;
-      };
-    }[];
-  };
-  external_links: {
-    url: string;
-    icon: {
-      templated: boolean;
-      href: string;
-    };
-  }[];
-  //     };
-  //   };
-  //   // playbacks: any[];
-  //   // related: any[];
-  //   // videos: any[];
-  //   showId: number;
-  //   // seasonId: any;
-  //   // error: any;
-  //   // profileInit: any;
-  //   _sentryTraceData: string;
-  //   _sentryBaggage: string;
-  // };
-}
+  duration: string;
+  view_count: number;
+  tv_show_id: number;
+  tv_show_name: string;
+  season_id?: number;
+  season_name?: string;
+  season_number?: number;
+  episode_number?: number;
+  billing: { is_chargeable: boolean; is_purchased: boolean };
+}[];
 
 export interface NovaTokenAPI {
   accessToken: string;
