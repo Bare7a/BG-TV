@@ -1,5 +1,5 @@
 import * as i18n from "@solid-primitives/i18n";
-import en_dict from "../public/assets/lang/en.json";
+import en_dict from "/assets/lang/en.json?url";
 import { createResource, createSignal } from "solid-js";
 
 const [locale, setLocale] = createSignal("bg");

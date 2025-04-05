@@ -1,19 +1,21 @@
 import { $t } from "../../translate";
 import { fetchHtml, fetchJson } from "../../utils/api.utils";
-import { Episode, NovaEpisodesAPI, NovaSeriesAPI, NovaTokenAPI, Series } from "./types";
+import { Episode, NovaEpisodesAPI, NovaPlayAPI, NovaTokenAPI, Shows } from "./types";
 
 const HOST = "https://play.nova.bg";
 const HOST_API = "https://nbg-api.fite.tv/api/v2";
-const ALL_SERIES_URL = `${HOST}/allshows`;
+const ALL_SHOWS_URL = `${HOST}/allshows`;
 const HOST_TOKEN_URL = `${HOST}/api/token`;
 
-export class NovaSeries {
-  static async getAllSeries(): Promise<Series[]> {
-    const allSeriesHtml = await fetchHtml(ALL_SERIES_URL);
-    const seriesStr = allSeriesHtml.split('{"props":')[1].split(',"page"')[0];
-    const seriesObj: NovaSeriesAPI = JSON.parse(seriesStr);
+export class NovaPlay {
+  static showName = "NovaPlay";
 
-    const series: Series[] = seriesObj.pageProps.programsToDisplay.flatMap(p =>
+  static async getAllShows(): Promise<Shows[]> {
+    const allShowsHtml = await fetchHtml(ALL_SHOWS_URL);
+    const showsStr = allShowsHtml.split('{"props":')[1].split(',"page"')[0];
+    const showsObj: NovaPlayAPI = JSON.parse(showsStr);
+
+    const shows: Shows[] = showsObj.pageProps.programsToDisplay.flatMap(p =>
       p.shows.flatMap(s => ({
         id: s.id,
         url: `${HOST_API}/tv_shows/${s.id}/videos?offset=0&limit=100`,
@@ -23,7 +25,7 @@ export class NovaSeries {
       })),
     );
 
-    return series;
+    return shows;
   }
 
   static async getAllEpisodes(url: string): Promise<Episode[]> {

@@ -1,20 +1,20 @@
-import { fetchHtml } from "../../utils/api.utils";
-import { Episode, Series } from "./types";
+import { fetchHtml, getPageContent } from "../../utils/api.utils";
+import { Episode, Shows } from "./types";
 
 const HOST = "https://btvplus.bg";
 const CDN_URL = `https://cdn.btv.bg/hls`;
-const ALL_SERIES_URL = `${HOST}/predavaniya/`;
+const ALL_SHOWS_URL = `${HOST}/predavaniya/`;
 
-export class BtvSeries {
-  static async getAllSeries(): Promise<Series[]> {
-    const allSeriesHtml = await fetchHtml(ALL_SERIES_URL);
-    const pageContent = document.createElement("div");
-    pageContent.innerHTML = allSeriesHtml.replace(/href="\//gm, `href="${HOST}/`);
+export class BTVPlus {
+  static showName = "BTVPlus";
 
-    const seriesElements = Array.from(pageContent.querySelectorAll(".swiper-slide"));
+  static async getAllShows(): Promise<Shows[]> {
+    const html = await fetchHtml(ALL_SHOWS_URL);
+    const pageContent = getPageContent(html, HOST);
 
-    const series: Series[] = [];
-    for (const s of seriesElements) {
+    const showsElements = Array.from(pageContent.querySelectorAll(".swiper-slide"));
+    const shows: Shows[] = [];
+    for (const s of showsElements) {
       const url = s.querySelector<HTMLAnchorElement>("a")?.href;
       const title = s.querySelector<HTMLSpanElement>(".title")?.innerText.trim();
       const imageUrl = s.querySelector<HTMLImageElement>("img")?.src;
@@ -23,19 +23,17 @@ export class BtvSeries {
 
       const id = Number(url.split("/produkt/predavaniya/")[0].split("/")[1] ?? 0);
 
-      series.push({ id, url, imageUrl, title });
+      shows.push({ id, url, imageUrl, title });
     }
 
-    return series;
+    return shows;
   }
 
   static async getAllEpisodes(url: string): Promise<Episode[]> {
-    const allEpisodesHtml = await fetchHtml(url);
-    const pageContent = document.createElement("div");
-    pageContent.innerHTML = allEpisodesHtml;
+    const html = await fetchHtml(url);
+    const pageContent = getPageContent(html, HOST);
 
     const episodesElements = Array.from(pageContent.querySelectorAll(".episode"));
-
     const episodes: Episode[] = [];
     for (const e of episodesElements) {
       const href = e.querySelector<HTMLAnchorElement>("a")?.href;

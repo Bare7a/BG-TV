@@ -1,4 +1,4 @@
-export type Series = {
+export type Shows = {
   id: number;
   url: string;
   title: string;
@@ -14,13 +14,14 @@ export type Episode = {
   description?: string;
 };
 
-export interface ISeries {
-  getAllSeries: () => Promise<Series[]>;
+export interface IShow {
+  showName: string;
+  getAllShows: () => Promise<Shows[]>;
   getAllEpisodes: (url: string) => Promise<Episode[]>;
   getEpisodeUrl: (url: string) => Promise<string>;
 }
 
-export interface NovaSeriesAPI {
+export interface NovaPlayAPI {
   pageProps: {
     screen: {
       id: number;

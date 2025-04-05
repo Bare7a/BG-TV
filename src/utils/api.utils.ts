@@ -23,3 +23,14 @@ export const fetchHtml = async (url: string, token?: string): Promise<string> =>
 
   return data;
 };
+
+export const getPageContent = (html: string, host?: string): Document => {
+  if (host) {
+    html = html.replace(/src="\//gm, `src="${host}/`).replace(/href="\//gm, `href="${host}/`);
+  }
+
+  const parser = new DOMParser();
+  const pageContent = parser.parseFromString(html, "text/html");
+
+  return pageContent;
+};
